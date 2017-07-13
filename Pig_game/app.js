@@ -8,16 +8,72 @@ GAME RULES:
 - The first player to reach 100 points on GLOBAL score wins the game
 
 */
-var scores, roundScore, activePlayer, dice;
+var scores, roundScore, activePlayer;
 scores = [ 0, 0];
 roundScore = 0;
 activePlayer = 0;
 
-dice = Math.floor(Math.random() * 6) + 1;
+document.querySelector('.dice').style.display = 'none'; 
 
+document.getElementById('score-0').textContent = '0';
+document.getElementById('score-1').textContent = '0';
+document.getElementById('current-0').textContent = '0';
+document.getElementById('current-1').textContent = '0';
+
+document.querySelector('.btn-roll').addEventListener('click', function(){
+    // random nummer maken
+    var dice = Math.floor(Math.random() * 6) + 1;
+    // resultaat tonen
+    var diceDomObj = document.querySelector('.dice');
+    diceDomObj.style.display = 'block';
+    diceDomObj.src= 'dice-'+ dice + '.png';
+    // ronde score updaten ALS er nog geen 1 gerold is
+    if (dice !== 1){
+        roundScore += dice; //roundscore = roundscore + dice
+        document.querySelector('#current-' + activePlayer).textContent = roundScore;
+    } else {
+        nextPlayer();
+    }
+});
+document.querySelector('.btn-hold').addEventListener('click', function(){
+    //Current score toevoegen aan de global score
+    scores[activePlayer] += roundScore; // scores[activePlayer] = scores[activePlayer] + roundscore
+    // UI updaten
+    document.querySelector('#score-' + activePlayer).textContent = scores[activePlayer];
+    
+    // player check of hij/zij gewonnen heeft
+    if (scores[activePlayer] >= 100) {
+        document.querySelector('#name-' + activePlayer).textContent = 'WINNER!' ;
+        document.querySelector('.dice').style.display = 'none' ;
+        document.querySelector('.player-' + activePlayer + '-panel').classList.add('winner');
+        document.querySelector('.player-' + activePlayer + '-panel').classList.remove('active');
+    } else {
+
+        nextPlayer();
+    }
+});
+
+  //next player bij hold press
+    function nextPlayer() {
+        activePlayer === 0 ? activePlayer = 1 : activePlayer = 0;
+        roundScore = 0;
+        document.getElementById('current-0').textContent = '0';
+        document.getElementById('current-1').textContent = '0';
+        /* mss wel beter via toggle
+        document.querySelector('.player-0-panerl').classList.remove('active');
+        document.querySelector('.player-1-panerl').classList.add('active');
+        */
+        document.querySelector('.player-0-panel').classList.toggle('active');
+        document.querySelector('.player-1-panel').classList.toggle('active');
+        document.querySelector('.dice').style.display ='none';
+    }
+
+////////////////
+//info en test//
+////////////////
+
+/*
 document.querySelector('#current-' + activePlayer).textContent = dice;
 // zo kan je txt bvb italic zetten document.querySelector('#current-' + activePlayer).innerHTML = '<em>' + dice + '</em>';
 
-var x = document.querySelector('#score-0').textContent;
-
-document.querySelector('.dice').style.display = 'none';
+var x = document.querySelector('#score-0').textContent; */
