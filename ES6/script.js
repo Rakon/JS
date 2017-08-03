@@ -162,3 +162,41 @@ Person.prototype.myFriends6 = function(friends) {
     console.log(arr);
 }
 new Person('Derp').myFriends6(friends);
+
+// Destructering
+
+//ES5
+
+var david = ['David', 35];
+var name = david[0];
+var age = david[1];
+
+//ES6
+
+const [namez,yearz] = ['David', 1981];
+console.log(namez);
+console.log(yearz);
+
+//arrays only ES6
+
+const boxes = document.querySelectorAll('.box');
+const boxesArr6 = Array.from(boxes);
+Array.from(boxes).forEach(cur => cur.style.backgroundColor = 'blue');
+/*
+for (const cur of boxesArr6){
+    if (boxesArr6.className ==='box blue') {
+        continue;
+    }
+    cur.textContent = 'I am Pink!';
+}
+*/
+for (const cur of boxesArr6){
+    if (cur.className ==='box blue') {
+        continue;
+    }
+    cur.textContent = 'I changed to blue!';
+}
+
+var agesz = [12,17,8,21,4,8,88,23,34,99,11,4,3,1];
+console.log(agesz.findIndex(cur => cur >=40));
+console.log(agesz.find(cur => cur >=40));
