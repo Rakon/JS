@@ -200,3 +200,41 @@ for (const cur of boxesArr6){
 var agesz = [12,17,8,21,4,8,88,23,34,99,11,4,3,1];
 console.log(agesz.findIndex(cur => cur >=40));
 console.log(agesz.find(cur => cur >=40));
+
+//spread operator
+function addFiveAges (a,b,c,d,e) {
+    return a + b + c + d + e;
+}
+var ages = [25,25,65,98,14];
+const sum = addFiveAges(...ages);
+console.log(sum);
+
+const familyA = ['a', 'z', 'e', 'r'];
+const familyB = ['t', 'y', '!'];
+const bigFamily = [...familyA, ...familyB];
+console.log(bigFamily);
+
+const h = document.querySelector('h1');
+const boxesz = document.querySelectorAll('.box');
+const all = [h, ...boxesz];
+
+Array.from(all).forEach(cur => cur.style.color ='orange');
+
+//rest parameters
+
+function isFullage66(limit, ...years1) {
+    years1.forEach(cur => console.log((2017 - cur) >= limit));
+}
+isFullage66(20, 1990, 2001, 1999, 2010, 1941, 2016, 1981); // first nummer is the limit
+
+//Default parameters
+
+ function SmithPerson(firstName, yearOfBirth, lastName ='Smith', nationality ='Murican') {
+     this.firstName = firstName;
+     this.lastName = lastName;
+     this.yearOfBirth = yearOfBirth;
+     this.nationality = nationality;
+ }
+
+ var john = new SmithPerson('John', 1990); // type the name in the console
+ var bella = new SmithPerson('Bella', 1983, 'Diaz', 'Spanish');
