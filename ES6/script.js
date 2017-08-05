@@ -238,3 +238,43 @@ isFullage66(20, 1990, 2001, 1999, 2010, 1941, 2016, 1981); // first nummer is th
 
  var john = new SmithPerson('John', 1990); // type the name in the console
  var bella = new SmithPerson('Bella', 1983, 'Diaz', 'Spanish');
+
+
+ //maps
+
+ const question = new Map();
+ question.set('question', 'What is official name of the latest major JavaScript Version?');
+ question.set(1, 'ES5');
+ question.set(2 ,'ES6');
+ question.set(3, 'ES2015');
+ question.set(4, 'ES7');
+ question.set('correct', 3);
+ question.set(true, 'Correct answer :D');
+ question.set(false, 'Wrong try, Try again!');
+
+ console.log(question.get('question'));
+ console.log(question.size);
+/*
+ if(question.has(4)) {
+ question.delete(4);
+}
+*/
+//question.clear(); // clear all!
+ if(question.has(4)) {
+    console.log('Answer 4 is here');
+}
+
+// question.forEach((value, key) => console.log(`This is ${key}, and it's set to ${value}`));
+
+
+for (let [key, value] of question.entries()) {
+    console.log(`This is ${key}, and it's set to ${value}`);
+}
+
+for (let [key, value] of question.entries()) {
+    if (typeof(key) === 'number') {
+        console.log(`Answer ${key}:${value}`);
+    }
+}
+const ans = parseInt(prompt('Write correct answer'));
+console.log(question.get(ans === question.get('correct')));
