@@ -278,3 +278,67 @@ for (let [key, value] of question.entries()) {
 }
 const ans = parseInt(prompt('Write correct answer'));
 console.log(question.get(ans === question.get('correct')));
+
+//classes
+
+//ES5
+
+var p5 = function(name5, yearOfBirth5,job5) {
+    this.name5 = name5;
+    this.yearOfBirth5 = yearOfBirth5;
+    this.job5 = job5;
+}
+
+p5.prototype.calculateAge5 = function() {
+    var age = new Date().getFullYear() - this.yearOfBirth5;
+    console.log(age);
+}
+
+var dd = new p5('David', 1981, 'IT-guy!');
+console.log(dd);
+
+//ES6
+
+class Person6 {
+    constructor (name6, yearOfBirth6, job6) {
+        this.name6 = name6;
+        this.yearOfBirth6 = yearOfBirth6;
+        this.job6 = job6;
+    }
+    calculateAge5() {
+        var age = new Date().getFullYear() - this.yearOfBirth6;
+        console.log(age);
+    }
+}
+const p6 = new Person6('Ellen', 1989, 'Teacher');
+console.log(p6);
+
+//Class + subClasses
+
+class Person66 {
+    constructor (name6, yearOfBirth6, job6) {
+        this.name6 = name6;
+        this.yearOfBirth6 = yearOfBirth6;
+        this.job6 = job6;
+    }
+    calculateAge6() {
+        var age = new Date().getFullYear() - this.yearOfBirth6;
+        console.log(age);
+    }
+}
+class Athleate6 extends Person66 {
+    constructor(name6, yearOfBirth6, job6,olympicGames,medals){
+        super(name6, yearOfBirth6, job6);
+        this.olympicGames = olympicGames;
+        this.medals = medals;
+    }
+    wonMedal(){
+        this.medals++;
+        console.log(this.medals);
+    }
+}
+
+const davidAthlete6 = new Athleate6 ('David', 1981, 'Bow&Arrow', 5, 60);
+
+davidAthlete6.wonMedal();
+davidAthlete6.calculateAge6();
